@@ -40,12 +40,13 @@ Idea 1: - Get path from google maps, implement PID to follow the line.
 - `sudo docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" --name roslocal -it ros:noetic-ros-core /bin/bash`
 
 #### Accessing docker container
-- `docker exec -it roslocal bash`
-note: added at the end of `.bashrc` -> `source ../opt/ros/noetic/setup.bash`
+- `docker exec -it roslocal bash`   
 
 #### Updating and installing turtlesim
 - `apt-get update`
 - `sudo apt-get install ros-noetic-turtlesim`
+
+- note: added at the end of `~/.bashrc` -> `source ../opt/ros/noetic/setup.bash` this allows immediate access to ros tools
 
 #### Resources: 
 - http://wiki.ros.org/docker/Tutorials/Docker
