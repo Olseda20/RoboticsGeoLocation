@@ -13,6 +13,9 @@ This is an mini project to demonstrate my ability to generate a Turtle Robot tha
 ### Setup:
  - setup docker container for ros http://wiki.ros.org/docker/Tutorials/Docker
  - get turtle bot set up
+
+ - ros to turtlesim guide mac os (docker): https://desertbot.io/blog/ros-turtlesim-beginners-guide-mac
+ 1. 
  
  
 
