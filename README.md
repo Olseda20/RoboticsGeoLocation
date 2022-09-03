@@ -87,6 +87,17 @@ echo $ROS_PACKAGE_PATH
 rosrun turtlesim turtlesim_node
 ```
 
+I cam across this error
+
+```bash
+libGL error: No matching fbConfigs or visuals found 
+libGL error: failed to load driver: swrast
+```
+fixed with 
+```bash
+export LIBGL_ALWAYS_INDIRECT=1
+sudo apt-get install -y mesa-utils libgl1-mesa-glx
+```
 
 #### Resources: 
 - http://wiki.ros.org/docker/Tutorials/Docker
