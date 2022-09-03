@@ -40,16 +40,32 @@ Idea 1: - Get path from google maps, implement PID to follow the line.
 
 #### Spinning up a Docker container for core noetic build
 - `docker pull ros`
-- `sudo docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" --name roslocal -it ros:noetic-ros-core /bin/bash`
+- ~~`sudo docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" --name roslocal -it ros:noetic-ros-core /bin/bash`~~
+- `docker run -e DISPLAY=host.docker.internal:0 --name rosproject -it ros:noetic-ros-core
+bash`
 
 #### Accessing docker container
-- `docker exec -it roslocal bash`   
+- `docker exec -it rosproject bash`   
 
 #### Updating and installing turtlesim
-- `apt-get update`
-- `sudo apt-get install ros-noetic-turtlesim`
+~~- `apt-get update`~~
+~~- `sudo apt-get install ros-noetic-turtlesim`~~
+- `sudo apt-get update`
+- `sudo apt-get dist-upgrade`
+- `sudo apt-get install ros-melodic-ros`
 
 - note: added at the end of `~/.bashrc` -> `source ../opt/ros/noetic/setup.bash` this allows immediate access to ros tools
+  -`echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc`
+  
+- to display all docker containers on a new terminal `docker ps -l`
+```bash
+(base) omro@Omars-MacBook-Pro-6 ~ % docker ps -l
+CONTAINER ID   IMAGE                 COMMAND                  CREATED          STATUS          PORTS     NAMES
+1fc98c8ed6cc   ros:noetic-ros-core   "/ros_entrypoint.sh …"   10 minutes ago   Up 10 minutes             rosproject
+```
+
+enter the container of interest ie rosproject in this case
+- `docker exec -it rosproject bash`
 
 #### Resources: 
 - http://wiki.ros.org/docker/Tutorials/Docker
