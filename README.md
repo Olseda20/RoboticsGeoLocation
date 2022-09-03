@@ -48,12 +48,14 @@ bash`
 - `docker exec -it rosproject bash`   
 
 #### Updating and installing turtlesim
-~~- `apt-get update`~~
-~~- `sudo apt-get install ros-noetic-turtlesim`~~
-- `sudo apt-get update`
-- `sudo apt-get dist-upgrade`
-- `sudo apt-get install ros-melodic-ros`
-
+```bash
+sudo apt-get update
+sudo apt-get dist-upgrade
+sudo apt-get install build-essential libssl-dev
+sudo apt-get install ros-noetic-ros
+sudo apt-get install ros-noetic-turtlesim
+```
+- 
 - note: added at the end of `~/.bashrc` -> `source ../opt/ros/noetic/setup.bash` this allows immediate access to ros tools
   -`echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc`
   
@@ -66,6 +68,25 @@ CONTAINER ID   IMAGE                 COMMAND                  CREATED          S
 
 enter the container of interest ie rosproject in this case
 - `docker exec -it rosproject bash`
+
+
+## SETTING UP PROJECT AND GETTING TURTLESIM UP AND RUNNING
+- ENTER THE DESIRED WORKSPACE in my case new workspace 
+```bash
+mkdir project
+cd project
+```
+Build the project files
+```bash
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/
+source /opt/ros/noetic/setup.bash
+catkin_make
+source devel/setup.bash
+echo $ROS_PACKAGE_PATH
+rosrun turtlesim turtlesim_node
+```
+
 
 #### Resources: 
 - http://wiki.ros.org/docker/Tutorials/Docker
