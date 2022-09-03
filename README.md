@@ -52,5 +52,6 @@ Idea 1: - Get path from google maps, implement PID to follow the line.
 - http://wiki.ros.org/docker/Tutorials/Docker
 - https://www.reddit.com/r/ROS/comments/udxwcv/what_version_of_ros_should_i_download/
 - https://wiki.ros.org/Distributions
+- ros to turtlesim guide mac os (docker): https://desertbot.io/blog/ros-turtlesim-beginners-guide-mac
 
 
