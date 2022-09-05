@@ -4,11 +4,13 @@ echo "Heyyo, this is the first time setup of my rosproject. This will install al
 # getting ros set up
 sudo apt-get update
 sudo apt-get dist-upgrade
+sudo apt-get install pip
 sudo apt-get install build-essential libssl-dev
 export LIBGL_ALWAYS_INDIRECT=1
 sudo apt-get install -y mesa-utils libgl1-mesa-glx
 sudo apt-get install ros-noetic-ros
 sudo apt-get install ros-noetic-turtlesim
+pip install pytest
 echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 
 # creating the project file
