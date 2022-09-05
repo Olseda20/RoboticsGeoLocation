@@ -6,22 +6,19 @@ import time
 import rospy
 from turtlesim.msg import Pose
 
-def pose_callback(pose_message):
-    ''' callback function to globally store the currently pose data '''
-    global pose, X, Y, YAW
-    pose = pose_message
-    X = pose.x
-    Y = pose.y
-    YAW = pose.theta
+POSE = None
 
 def initiate_velocity_publisher():
     ''' initations pose subscriber '''
+
+    def callback(pose_message):
+        global POSE
+        POSE = pose_message
+
     rospy.init_node('TurtleMotion', anonymous=True)
-    position_subscriber = rospy.Subscriber('/turtle1/pose', Pose, pose_callback)
+    rospy.Subscriber('/turtle1/pose', Pose, callback)
     time.sleep(2)
 
-def callback(pose):
-    rospy.loginfo(f'Location x: {pose.x} \t Location y: {pose.y}')
 
 def get_current_pose(pose):
     """ Callback function which is called when a new message of type Pose is received 
@@ -50,42 +47,9 @@ def calculate_angular_velocity(theta_goal, theta, k = 9):
     angular_velocity = (theta_goal - theta)*k
     return angular_velocity
 
-
-# def move_to_goal(self, goal_location=DesiredLocation):
-#     # desired location of robotics
-
-#     # update turtle position and evlauate distance
-    # # self.update_pose()
-    # x_dist = self.pose.x - goal_location[1]
-    # y_dist = self.pose.y - goal_location[2]
-
-    
-
-    # motion controller
-        # enter TurtleModtion.py to evaluate how fast the turtleshould move?
-        # PID?
-
-# currently this file will work on the turlsim map thing
-
-# but the idea is that once we can import a gps location, that will act as the coordiante positions of the turtle and the 
-# coordinate location of Greenwhich will be the desired location. 
-
-# setting a temporary coordiante location
-
-# def TurtlePosition():
-#     rospy.init_node('TurtleLocation', anonymous=True)
-#     subscriber = rospy.Subscriber('/turtle1/pose', Twist, queue_size=10)
-#     rate = rospy.Rate(10)
-
-#     pose = subscriber.pose
-
-#     while True:
-#         rospy.loginfo(pose)
-
+def main():
+    ''' main run method '''
+    print('TODO')
 
 if __name__ == "__main__":
-    print('hello world')
-    # turt = TurtleLocation()
-
-    while True:
-        rospy.loginfo(turt.callback(turt.odometry))
+    main()
