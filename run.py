@@ -23,14 +23,14 @@ def move_to_goal(destination_location, velocity_publisher):
   distance_to_goal, theta_to_goal = PoseCalc.evaluate_distance(destination_location, POSE)
 
   # compare current location to the goal location
-  while distance_to_goal >= 1:
+  while distance_to_goal >= 0.1:
     distance_to_goal, theta_to_goal = PoseCalc.evaluate_distance(destination_location, POSE)
 
     updated_linear_velocity = TurtleMotion.calculate_linear_velocity(distance_to_goal, 0.5)
     updated_angular_velocity = TurtleMotion.calculate_angular_velocity(theta_to_goal, POSE.theta, 4)
 
     TurtleMotion.move_turtle(updated_linear_velocity, updated_angular_velocity, velocity_publisher, velocity)
-    rospy.loginfo(distance_to_goal)
+    rospy.loginfo(f'distance to goal: {distance_to_goal}')
     rospy.loginfo(f'pose data: {POSE.x} {POSE.y}')
     # sleep(1)
 
