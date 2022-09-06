@@ -1,7 +1,7 @@
 import pytest
 import math
 from turtlesim.msg import Pose
-import PositionCalculations as PoseCalc
+import position as PoseCalc
 
 pose = Pose()
 pose.x = pose.y = 0
