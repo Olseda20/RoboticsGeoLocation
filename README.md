@@ -11,6 +11,8 @@ This is an mini project to demonstrate my ability to generate a Turtle Robot tha
 
 ## SETUP
 
+This assumes you have docker installed on your machine. https://docs.docker.com/get-docker/
+
 ### Step 1: Spin up a new docker container
 #### Spinning up a Docker container for core noetic build
 In your terminal set up a docker instance for the project. in this case the name of the project is `rosproject`
