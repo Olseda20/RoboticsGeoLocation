@@ -11,7 +11,7 @@ import position
 WINDOW_BOUNDARY = [11.0, 11.0]
 
 class Turtle():
-  ''' Class to contain an instance of a turtle for motion around a space '''
+  """ Class to contain an instance of a turtle for motion around a given space """
   def __init__(self) -> None:
     # initlise pose and velocity
     self.pose = Pose()
@@ -31,18 +31,19 @@ class Turtle():
     self.rate = rospy.Rate(10)
 
   def pose_callback(self, pose_message):
-    ''' callback function to globally store the currently pose data '''
+    """ callback function to globally store the currently pose data """
     self.pose = pose_message
 
   def move_turtle(self, linear_vel, angular_vel):
-    ''' publishes linear and angular velocities to the turtle '''
+    """ publishes linear and angular velocities to the turtle """
     # setting linear velocities
     self.velocity.linear.x = linear_vel
     self.velocity.linear.y = 0
     self.velocity.linear.z = 0
+
     # setting angular velocities
     self.velocity.angular.x = 0
-    self. velocity.angular.y = 0
+    self.velocity.angular.y = 0
     self.velocity.angular.z = angular_vel
 
     # for logging/debugging
@@ -50,8 +51,7 @@ class Turtle():
     self.velocity_publisher.publish(self.velocity)
 
   def move_to_goal(self, destination_location):
-    ''' method to move turtle to desired goal location '''
-
+    """ method to move turtle to desired goal location """
     try:
       # identify/initialise the distance and theta to goal
       distance_to_goal, theta_to_goal = position.evaluate_distance(destination_location, self.pose)
@@ -72,13 +72,8 @@ class Turtle():
     except rospy.ROSInterruptException:
       pass
 
-def main(goal_x = None, goal_y = None):
-  ''' main run script - to move turtle to a specified goal location '''
-
-  if (goal_x is None) or (goal_y is None):
-    print("the goal location cannot be None")
-    return 0
-
+def main(goal_x, goal_y):
+  """ main run script - to move turtle to a specified goal location """
   if ((goal_x < 0) or (goal_x > 11)) or ((goal_y < 0) or (goal_y > 11)):
     print("Goal coordiante for x and y must be between 0 and 11")
     return 0
@@ -90,7 +85,7 @@ if __name__ == "__main__":
   try:
     if (float(sys.argv[1]) <= WINDOW_BOUNDARY[0]) or (float(sys.argv[2]) <= WINDOW_BOUNDARY[1]):
       main(float(sys.argv[1]), float(sys.argv[2]))
-    else: 
+    else:
       print("Please provide some coordinates, eg 'run.py 3 4'")
 
   except rospy.ROSInterruptException:
