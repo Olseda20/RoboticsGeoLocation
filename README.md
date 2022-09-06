@@ -6,7 +6,6 @@ This is an mini project to demonstrate my ability to generate a Turtle Robot tha
 ### Part 1: Create some code for turtle to be able to directly move to the a given location.
 - Get initial tutle onto a map
 - Get initial rotation, trajectory and distance abiliy from current location to coordinate location
-- introduce mapping functionality? google maps api??
 
 
 ## SETUP
@@ -55,7 +54,7 @@ cd /RoboticsGeoLocation
 ```
 
 ### 1- Testing
-To ensure the envoronment is appropriately set up and the Position and Motion methdos are appropriately working. Please run the Provided tests ensuring they all pass.
+To ensure the envoronment is appropriately set up and the Position and Motion methods are appropriately working. Please run the Provided tests ensuring they all pass.
 
 In a new terminal window that is (currently accessing the `rosproject` docker container) run the 2 provided tests.
 
@@ -103,11 +102,20 @@ you should see the turtle moving towards the provided coordiante location.
 
 I would encourage you to test several locations.
 
+### Next Parts of this project
+I would start to incorporate some sort of Mapping/GPS API to identify a gps location of a given turtle. 
+https://github.com/googlemaps/google-maps-services-python
+this could solve a lot of the path planning issues associated by making use of pre-existing solutions to this particular problem.
+  
+Positionally, rather than using the Pose Data from the `turtle1/pose` node, I would instead look to identify the coordinate location using GPS. Along with the coordinate location of the turtle, I would do something similar for the coordinate location of the Desired location (Greenwhich?)
+  
+Initially, I would making use of the same methods generated in this project to move the turtle towards the location using the same motion. 
+  
+On success of this I would start thinking about the process of making use of waypoints built into that api. I would think about the checkpoints a person might need to make while `walking` this route, or a car `driving`, split it up into appropriate sections, and still using the same motion system, move towards to split checkpoint locations.
 
-
+  
 #### Resources: 
 - http://wiki.ros.org/docker/Tutorials/Docker
-- https://www.reddit.com/r/ROS/comments/udxwcv/what_version_of_ros_should_i_download/
 - https://wiki.ros.org/Distributions
 - ros to turtlesim guide mac os (docker) to get visualisation: https://desertbot.io/blog/ros-turtlesim-beginners-guide-mac
 
