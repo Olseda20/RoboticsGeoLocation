@@ -32,15 +32,14 @@ def move_to_goal(destination_location, velocity_publisher):
     TurtleMotion.move_turtle(updated_linear_velocity, updated_angular_velocity, velocity_publisher, velocity)
     rospy.loginfo(f'distance to goal: {distance_to_goal}')
     rospy.loginfo(f'pose data: {POSE.x} {POSE.y}')
-    # sleep(1)
 
   rospy.loginfo('goal has been reached')
 
 def main(goal_x = None, goal_y = None):
   ''' main run script - to move turtle to a specified goal location '''
   
-  if ((goal_x is None) or (goal_y is None)):
-      rospy.loginfo("Please prove a goal location in the to the method")
+  if ((goal_x >= 11) or (goal_y >= 11)):
+      rospy.loginfo("Goal coordiante for x and y must be between 0 and 11")
       return 0
   # create turtle node
   rospy.init_node('TurtleNode', anonymous=True)
@@ -56,7 +55,11 @@ def main(goal_x = None, goal_y = None):
 
 if __name__ == "__main__":
   try:
-    main(float(sys.argv[1]), float(sys.argv[2]))
+    if (len(sys.argv) >= 1):
+      main(float(sys.argv[1]), float(sys.argv[2]))
+    else: 
+      print("Please provide some coordinates, eg 'run.py 3 4'")
+
   except rospy.ROSInterruptException:
     pass
   # while True:
