@@ -1,4 +1,3 @@
-#! usr/bin/bash
 echo "Heyyo, this is the first time setup of my rosproject. This will install all the relevant dependancies to get an appropriate ros container set up."
 
 # getting ros set up

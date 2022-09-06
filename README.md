@@ -1,23 +1,7 @@
 # RoboticsGeoLocation
 Robotics Geolocation Project
 
-This is an mini project to demonstrate my ability to generate a Turtle Robot that can autonomously make it's way to a given location from anywhere on earth. Initial goal location is the Greenwhich Observatory.
-
-**important things to remember:**
-- this is about reboustness and structure of code rather than the actual number of features introduced.
-- code cleanliness and readability is important
-
-
-## Step 1: Create a realistic plan
-
-### Setup:
- - setup docker container for ros http://wiki.ros.org/docker/Tutorials/Docker
- - get turtle bot set up
-
- - ros to turtlesim guide mac os (docker): https://desertbot.io/blog/ros-turtlesim-beginners-guide-mac
- 1. 
- 
- 
+This is an mini project to demonstrate my ability to generate a Turtle Robot that can autonomously make it's way to a given location.
 
 ### Part 1: Create some code for turtle to be able to directly move to the a given location.
 - Get initial tutle onto a map
@@ -25,79 +9,101 @@ This is an mini project to demonstrate my ability to generate a Turtle Robot tha
 - introduce mapping functionality? google maps api??
 
 
+## SETUP
 
+This assumes you have docker installed on your machine. https://docs.docker.com/get-docker/
 
-### Part 2: Introduce some ability to move across walking platforms???? google map api???? 
-Idea 1: - Get path from google maps, implement PID to follow the line.
-
-
-## Step 2: Create general methods
-
-
-## Step 3: Create tests for given methods??????????????????????????????????
-- checkout pytest and pyunit
-
-
+### Step 1: Spin up a new docker container
 #### Spinning up a Docker container for core noetic build
-- `docker pull ros`
-- ~~`sudo docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" --name roslocal -it ros:noetic-ros-core /bin/bash`~~
-- `docker run -e DISPLAY=host.docker.internal:0 --name rosproject -it ros:noetic-ros-core
-bash`
-
-#### Accessing docker container
-- `docker exec -it rosproject bash`   
-
-#### Updating and installing turtlesim
+In your terminal set up a docker instance for the project. in this case the name of the project is `rosproject`
 ```bash
-sudo apt-get update
-sudo apt-get dist-upgrade
-sudo apt-get install build-essential libssl-dev
-sudo apt-get install ros-noetic-ros
-sudo apt-get install ros-noetic-turtlesim
+docker pull ros
+docker run -e DISPLAY=host.docker.internal:0 --name rosproject -it ros:noetic-ros-core bash
 ```
-- 
-- note: added at the end of `~/.bashrc` -> `source ../opt/ros/noetic/setup.bash` this allows immediate access to ros tools
-  -`echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc`
-  
-- to display all docker containers on a new terminal `docker ps -l`
+
+#### Step 2: Accessing docker container
+You are most likely already inside of the docker container if you're seeing something along the lines of 
+```bash
+root@db5ef5c82850:/# 
+```
+
+If not then enter the docker container from your terminal. (note: if you have named your project differently to `rosproject`, make sure to enter the appropriate name)
+```
+docker exec -it rosproject bash
+```   
+this will be important later on when you will need to open up multiple container windows
+
+- note: if you're outside of your continer, to display the available docker containers on a new terminal run `docker ps -l`
 ```bash
 (base) omro@Omars-MacBook-Pro-6 ~ % docker ps -l
 CONTAINER ID   IMAGE                 COMMAND                  CREATED          STATUS          PORTS     NAMES
 1fc98c8ed6cc   ros:noetic-ros-core   "/ros_entrypoint.sh …"   10 minutes ago   Up 10 minutes             rosproject
 ```
 
-enter the container of interest ie rosproject in this case
-- `docker exec -it rosproject bash`
-
-
-## SETTING UP PROJECT AND GETTING TURTLESIM UP AND RUNNING
-- ENTER THE DESIRED WORKSPACE in my case new workspace 
+#### Step 3: Run the first time setup
+Once you're inside the docker continer, run the `first-time-setup.sh` bash script to install all the relevant depancies  for the project.
 ```bash
-mkdir project
-cd project
-```
-Build the project files
-```bash
-mkdir -p ~/catkin_ws/src
-cd ~/catkin_ws/
-source /opt/ros/noetic/setup.bash
-catkin_make
-source devel/setup.bash
-echo $ROS_PACKAGE_PATH
-rosrun turtlesim turtlesim_node
+./first-time-setup.sh
 ```
 
-I cam across this error
+## Testing the Work
+Before Proceeding, make sure you are inside of the correct directroy and for the sake of convenince, if you open up a new terminal tab accessing the container, made sure to make your way back to this directory, most likely  
 
+run the command below to reach it if you aren't there yet.
 ```bash
-libGL error: No matching fbConfigs or visuals found 
-libGL error: failed to load driver: swrast
+cd /RoboticsGeoLocation
 ```
-fixed with 
+
+### 1- Testing
+To ensure the envoronment is appropriately set up and the Position and Motion methdos are appropriately working. Please run the Provided tests ensuring they all pass.
+
+In a new terminal window that is (currently accessing the `rosproject` docker container) run the 2 provided tests.
+
+**Position Tests**
+```
+pytest PositionTests.py
+```
+successful results look like   
+
+<img width="544" alt="image" src="https://user-images.githubusercontent.com/49950899/188654917-8f849135-6b3c-4859-9b21-f1161985cde1.png">
+
+
+**Motion Tests**
+```
+pytest MotionTests.py
+```
+successful results look like   
+
+<img width="540" alt="image" src="https://user-images.githubusercontent.com/49950899/188654781-f1fb35c4-00fb-4ea5-8ea1-73469f3db9b1.png">
+
+
+### 2- Running the move to goal script
+Once you're happy the tests are running.
+Open up 2 more terminal windows (total of 3 windows accessing the docker container).
+
+#### 1st window: roscore
+run roscore to ensure a master is running
 ```bash
-export LIBGL_ALWAYS_INDIRECT=1
-sudo apt-get install -y mesa-utils libgl1-mesa-glx
+roscore
 ```
+
+#### 2nd window: turtlesim
+run the turtlesim to visualise the motion
+```bash
+rosrun turtlesim turtlesim_node 
+```
+
+#### 3rd window: testing functionality
+this will be where you will test the move to goal functionality
+you should run the run.py script with 2 potional arguments which will make up a set of coordinates (6 7)
+```bash
+python3 run.py 6 7
+```
+you should see the turtle moving towards the provided coordiante location.
+
+I would encourage you to test several locations.
+
+
 
 #### Resources: 
 - http://wiki.ros.org/docker/Tutorials/Docker
