@@ -4,15 +4,7 @@ Robotics Geolocation Project
 This is an mini project to demonstrate my ability to generate a Turtle Robot that can autonomously make it's way to a given location.
 
 
-### Setup:
- - setup docker container for ros http://wiki.ros.org/docker/Tutorials/Docker
- - get turtle bot set up
-
- - ros to turtlesim guide mac os (docker): https://desertbot.io/blog/ros-turtlesim-beginners-guide-mac
- 1. 
- 
- 
-
+### SETUP
 ### Part 1: Create some code for turtle to be able to directly move to the a given location.
 - Get initial tutle onto a map
 - Get initial rotation, trajectory and distance abiliy from current location to coordinate location
@@ -20,64 +12,44 @@ This is an mini project to demonstrate my ability to generate a Turtle Robot tha
 
 ### Step 1: Spin up a new docker container
 #### Spinning up a Docker container for core noetic build
-- `docker pull ros`
-- `docker run -e DISPLAY=host.docker.internal:0 --name rosproject -it ros:noetic-ros-core
-bash`
+In your terminal set up a docker instance for the project. in this case the name of the project is `rosproject`
+```bash
+docker pull ros
+docker run -e DISPLAY=host.docker.internal:0 --name rosproject -it ros:noetic-ros-core bash
+```
 
 #### Accessing docker container
-- `docker exec -it rosproject bash`   
-
-#### Updating and installing turtlesim
-```bash
-sudo apt-get update
-sudo apt-get dist-upgrade
-sudo apt-get install build-essential libssl-dev
-sudo apt-get install ros-noetic-ros
-sudo apt-get install ros-noetic-turtlesim
 ```
-- 
-- note: added at the end of `~/.bashrc` -> `source ../opt/ros/noetic/setup.bash` this allows immediate access to ros tools
-  -`echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc`
-  
-- to display all docker containers on a new terminal `docker ps -l`
+docker exec -it rosproject bash
+```   
+- note: if you're outside of your continer, to display the available docker containers on a new terminal run `docker ps -l`
 ```bash
 (base) omro@Omars-MacBook-Pro-6 ~ % docker ps -l
 CONTAINER ID   IMAGE                 COMMAND                  CREATED          STATUS          PORTS     NAMES
 1fc98c8ed6cc   ros:noetic-ros-core   "/ros_entrypoint.sh …"   10 minutes ago   Up 10 minutes             rosproject
 ```
 
-enter the container of interest ie rosproject in this case
-- `docker exec -it rosproject bash`
-
-
-## SETTING UP PROJECT AND GETTING TURTLESIM UP AND RUNNING
-- ENTER THE DESIRED WORKSPACE in my case new workspace 
+#### Run the first time setup
+Once you're inside the docker continer, run the `first-time-setup.sh` bash script to install all the relevant depancies  for the project.
 ```bash
-mkdir project
-cd project
-```
-Build the project files
-```bash
-mkdir -p ~/catkin_ws/src
-cd ~/catkin_ws/
-source /opt/ros/noetic/setup.bash
-catkin_make
-source devel/setup.bash
-echo $ROS_PACKAGE_PATH
-rosrun turtlesim turtlesim_node
+./first-time-setup.sh
 ```
 
-I cam across this error
+### Testing the Work
+1- To ensure the Position and Motion methdos are appropriately working run the Provided tests ensuring they all pass.
+  on a new terminal window that is currently accessing the docker container run the 2 provided tests.
+Position Tests
+```
+pytest PositionTests.py
+```
+Motion Tests
+```
+pytest MotionTests.py
+```
 
-```bash
-libGL error: No matching fbConfigs or visuals found 
-libGL error: failed to load driver: swrast
-```
-fixed with 
-```bash
-export LIBGL_ALWAYS_INDIRECT=1
-sudo apt-get install -y mesa-utils libgl1-mesa-glx
-```
+
+1- In a new terminal tab, start up roscore
+
 
 #### Resources: 
 - http://wiki.ros.org/docker/Tutorials/Docker
