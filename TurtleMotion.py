@@ -10,7 +10,7 @@ def initiate_velocity_publisher():
   rospy.init_node('TurtleMotion', anonymous=True)
   return rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size=10)
 
-def calculate_linear_velocity(distance_to_goal, k = 0.5):
+def calculate_linear_velocity(distance_to_goal, k = 1):
   ''' calculates the desired linear velocity with proprtional control (k) '''
   linear_velocity = distance_to_goal*k
   return linear_velocity
