@@ -21,7 +21,6 @@ This is an mini project to demonstrate my ability to generate a Turtle Robot tha
 ### Step 1: Spin up a new docker container
 #### Spinning up a Docker container for core noetic build
 - `docker pull ros`
-- ~~`sudo docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" --name roslocal -it ros:noetic-ros-core /bin/bash`~~
 - `docker run -e DISPLAY=host.docker.internal:0 --name rosproject -it ros:noetic-ros-core
 bash`
 
