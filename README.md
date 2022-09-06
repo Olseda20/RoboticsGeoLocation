@@ -95,9 +95,9 @@ rosrun turtlesim turtlesim_node
 
 #### 3rd window: testing functionality
 this will be where you will test the move to goal functionality
-you should run the run.py script with 2 potional arguments which will make up a set of coordinates (6 7)
+you should run the MoveTurtle.py script with 2 positional arguments which will make up a set of coordinates eg (6 7)
 ```bash
-python3 run.py 6 7
+python3 MoveTurtle.py.py 6 7
 ```
 you should see the turtle moving towards the provided coordiante location.
 
@@ -109,6 +109,6 @@ I would encourage you to test several locations.
 - http://wiki.ros.org/docker/Tutorials/Docker
 - https://www.reddit.com/r/ROS/comments/udxwcv/what_version_of_ros_should_i_download/
 - https://wiki.ros.org/Distributions
-- ros to turtlesim guide mac os (docker): https://desertbot.io/blog/ros-turtlesim-beginners-guide-mac
+- ros to turtlesim guide mac os (docker) to get visualisation: https://desertbot.io/blog/ros-turtlesim-beginners-guide-mac
 
 
