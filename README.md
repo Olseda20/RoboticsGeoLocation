@@ -36,8 +36,9 @@ Once you're inside the docker continer, run the `first-time-setup.sh` bash scrip
 ```
 
 ### Testing the Work
-1- To ensure the Position and Motion methdos are appropriately working run the Provided tests ensuring they all pass.
-  on a new terminal window that is currently accessing the docker container run the 2 provided tests.
+1- To ensure the envoronment is appropriately set up and the Position and Motion methdos are appropriately working. Please run the Provided tests ensuring they all pass.
+
+In a new terminal window that is (currently accessing the `rosproject` docker container) run the 2 provided tests.
 Position Tests
 ```
 pytest PositionTests.py
@@ -47,8 +48,30 @@ Motion Tests
 pytest MotionTests.py
 ```
 
+Once you're happy the tests are running.
+Open up 2 more terminal windows (total of 3 windows accessing the docker container).
+1st window:
+run roscore to ensure a master is running
+```bash
+roscore
+``
 
-1- In a new terminal tab, start up roscore
+2nd window:
+run the turtlesim to visualise the motion
+```bash
+rosrun turtlesim turtlesim_node 
+```
+
+3rd window:
+this will be where you will test the move to goal functionality
+you should run the run.py script with 2 potional arguments which will make up a set of coordinates (6 7)
+```bash
+python3 run.py 6 7
+```
+you should see the turtle moving towards the provided coordiante location.
+
+I would encourage you to test several locations.
+
 
 
 #### Resources: 
