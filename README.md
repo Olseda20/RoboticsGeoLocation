@@ -36,8 +36,9 @@ CONTAINER ID   IMAGE                 COMMAND                  CREATED          S
 ```
 
 #### Step 3: Run the first time setup
-Once you're inside the docker continer, run the `first-time-setup.sh` bash script to install all the relevant depancies  for the project.
+Once you're inside the docker continer, run the `first-time-setup.sh` bash script to install all the relevant depancies  for the project. (make sure to be in the correct directory)
 ```bash
+cd /TurtleToLocation
 ./first-time-setup.sh
 ```
 
