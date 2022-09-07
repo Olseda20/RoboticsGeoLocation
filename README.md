@@ -7,6 +7,9 @@ This is an mini project to demonstrate my ability to generate a Turtle Robot tha
 ## SETUP
 
 This assumes you have docker installed on your machine. https://docs.docker.com/get-docker/
+And that xQuartz is appropriately installed and running to allow visual tools to be displayed.
+
+A guide to set up xQuartz appropriately can be found in Steps 1-3: https://desertbot.io/blog/ros-turtlesim-beginners-guide-mac
 
 ### Step 1: Spin up a new docker container
 #### Spinning up a Docker container for ros noetic build
