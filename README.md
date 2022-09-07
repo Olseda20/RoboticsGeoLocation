@@ -1,4 +1,4 @@
-# RoboticsGeoLocation
+# TurtleToLocation
 Robotics Geolocation Project
 
 This is an mini project to demonstrate my ability to generate a Turtle Robot that can autonomously make it's way to a given location.
