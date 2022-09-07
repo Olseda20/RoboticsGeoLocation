@@ -94,13 +94,12 @@ rosrun turtlesim turtlesim_node
 
 #### 3rd window: testing functionality
 this will be where you will test the move to goal functionality
-you should run the MoveTurtle.py script with 2 positional arguments which will make up a set of coordinates eg (6 7)
+you should run the MoveTurtle.py script with 2 positional arguments which will make up a set of coordinates eg (8 9)
 ```bash
-python3 MoveTurtle.py.py 6 7
+python3 MoveTurtle.py.py 8 9
 ```
 you should see the turtle moving towards the provided coordiante location.
-
-I would encourage you to test several locations.
+<img width="495" alt="image" src="https://user-images.githubusercontent.com/49950899/188760956-0365916c-1de8-42b3-ba85-2785bbcb2cf9.png">
 
 ### Next Parts of this project
 I would start to incorporate some sort of Mapping/GPS API to identify a gps location of a given turtle. 
