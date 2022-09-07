@@ -16,7 +16,7 @@ A guide to set up xQuartz appropriately can be found in Steps 1-3: https://deser
 In your terminal set up a docker instance for the project. in this case the name of the project is `rosproject`
 ```bash
 docker pull ros
-docker run -e DISPLAY=host.docker.internal:0 --name rosproject -it ros:noetic-ros-core bash
+docker run -e DISPLAY=host.docker.internal:0 --name rosproject -it ros:noetic-ros-core bash -v
 ```
 
 #### Step 2: Accessing docker container
@@ -41,6 +41,8 @@ CONTAINER ID   IMAGE                 COMMAND                  CREATED          S
 #### Step 3: Run the first time setup
 Once you're inside the docker continer, run the `first-time-setup.sh` bash script to install all the relevant depancies  for the project. (make sure to be in the correct directory)
 ```bash
+sudo apt get git
+git clone https://github.com/Olseda20/TurtleToLocation.git
 cd /TurtleToLocation
 ./first-time-setup.sh
 ```
