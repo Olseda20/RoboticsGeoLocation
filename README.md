@@ -13,7 +13,7 @@ This is an mini project to demonstrate my ability to generate a Turtle Robot tha
 This assumes you have docker installed on your machine. https://docs.docker.com/get-docker/
 
 ### Step 1: Spin up a new docker container
-#### Spinning up a Docker container for core noetic build
+#### Spinning up a Docker container for ros noetic build
 In your terminal set up a docker instance for the project. in this case the name of the project is `rosproject`
 ```bash
 docker pull ros
@@ -46,15 +46,15 @@ Once you're inside the docker continer, run the `first-time-setup.sh` bash scrip
 ```
 
 ## Testing the Work
-Before Proceeding, make sure you are inside of the correct directroy and for the sake of convenince, if you open up a new terminal tab accessing the container, made sure to make your way back to this directory, most likely  
+Before Proceeding, make sure you are inside of the correct directroy and for the sake of convenince, if you open up a new terminal tab accessing the container, made sure to make your way back to this directory.
 
-run the command below to reach it if you aren't there yet.
+If you aren't there, you can run.
 ```bash
-cd /RoboticsGeoLocation
+cd /TurtleToLocation
 ```
 
 ### 1- Testing
-To ensure the envoronment is appropriately set up and the Position and Motion methods are appropriately working. Please run the Provided tests ensuring they all pass.
+To ensure the environment is appropriately set up and the Position and Motion methods are working. Please run the Provided tests ensuring they all pass.
 
 In a new terminal window that is (currently accessing the `rosproject` docker container) run the 2 provided tests.
 
